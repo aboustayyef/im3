@@ -1,6 +1,7 @@
 <template>
     <div class="columns">
         <div class="column is-grey is-4">
+            <im-uploadmodal></im-uploadmodal>
             <im-sidebar></im-sidebar>
         </div>
         <div class="column is-8">

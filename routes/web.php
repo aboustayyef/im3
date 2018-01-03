@@ -27,6 +27,11 @@ Route::group(['prefix' => 'api', 'middleware'=>'auth'], function () {
 	});
 });
 
+Route::post('/uploadCsv', [
+    'as'    =>  'uploadHandler',
+    'uses'  =>  'UploadController@index'
+]);
+
 /*
 -------------------------------------------------------------------------
 | Auth and Admin Routes
