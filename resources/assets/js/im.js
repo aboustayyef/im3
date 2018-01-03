@@ -16,6 +16,8 @@ window.Vue = require('vue');
  */
 
 Vue.component('invoicemaker', require('./components/InvoiceMaker.vue'));
+Vue.component('im-sidebar', require('./components/ImSidebar.vue'));
+Vue.component('im-invoice', require('./components/ImInvoice.vue'));
 
 const app = new Vue({
     el: '#app'
