@@ -1721,23 +1721,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
+            filter_keyword: '',
             invoicemaker: __WEBPACK_IMPORTED_MODULE_0__state_js__["a" /* default */]
         };
+    },
+    computed: {
+        filtered_goods: function filtered_goods() {
+            if (this.filter_keyword == '') {
+                return this.invoicemaker.goods;
+            }
+            var reg = new RegExp(this.filter_keyword, "gi");
+            return this.invoicemaker.goods.filter(function (good) {
+                return good.Name.match(reg) != null || good.Description.match(reg) != null || good.Code.match(reg) != null || good.Supplier.match(reg) != null;
+            });
+        }
     }
 });
 
@@ -1799,6 +1801,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__state_js__ = __webpack_require__("./resources/assets/js/state.js");
+//
+//
 //
 //
 //
@@ -32163,7 +32167,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "modal is-active" }, [
+  return _c("div", { staticClass: "modal" }, [
     _c("div", { staticClass: "modal-background" }),
     _vm._v(" "),
     _c("div", { staticClass: "modal-content" }, [
@@ -32249,8 +32253,114 @@ var render = function() {
     _vm._v(" "),
     _c("hr"),
     _vm._v(" "),
+    _c("div", { staticClass: "columns" }, [
+      _c("div", { staticClass: "column" }, [
+        _c("div", { staticClass: "field" }, [
+          _c("label", { staticClass: "label" }, [
+            _vm._v("Invoice Prepared By")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "control" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.invoicemaker.preparer.name,
+                  expression: "invoicemaker.preparer.name"
+                }
+              ],
+              staticClass: "input",
+              attrs: { type: "text", placeholder: "Blue Gallery Staff" },
+              domProps: { value: _vm.invoicemaker.preparer.name },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(
+                    _vm.invoicemaker.preparer,
+                    "name",
+                    $event.target.value
+                  )
+                }
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "field" }, [
+          _c("label", { staticClass: "label" }, [_vm._v("Customer Name")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "control" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.invoicemaker.customer.name,
+                  expression: "invoicemaker.customer.name"
+                }
+              ],
+              staticClass: "input",
+              attrs: { type: "text", placeholder: "Customer name" },
+              domProps: { value: _vm.invoicemaker.customer.name },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(
+                    _vm.invoicemaker.customer,
+                    "name",
+                    $event.target.value
+                  )
+                }
+              }
+            })
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "column" }, [
+        _c("div", { staticClass: "field" }, [
+          _c("label", { staticClass: "label" }, [_vm._v("Customer Address")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "control" }, [
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.invoicemaker.customer.address,
+                  expression: "invoicemaker.customer.address"
+                }
+              ],
+              staticClass: "textarea",
+              attrs: { placeholder: "Address" },
+              domProps: { value: _vm.invoicemaker.customer.address },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(
+                    _vm.invoicemaker.customer,
+                    "address",
+                    $event.target.value
+                  )
+                }
+              }
+            })
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("hr"),
+    _vm._v(" "),
     _c("div", { staticClass: "field" }, [
-      _c("label", { staticClass: "label" }, [_vm._v("Invoice Prepared By")]),
+      _c("label", { staticClass: "label" }, [_vm._v("Filter")]),
       _vm._v(" "),
       _c("div", { staticClass: "control" }, [
         _c("input", {
@@ -32258,86 +32368,41 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.invoicemaker.preparer.name,
-              expression: "invoicemaker.preparer.name"
+              value: _vm.filter_keyword,
+              expression: "filter_keyword"
             }
           ],
           staticClass: "input",
-          attrs: { type: "text", placeholder: "Blue Gallery Staff" },
-          domProps: { value: _vm.invoicemaker.preparer.name },
+          attrs: { type: "text", placeholder: "search goods" },
+          domProps: { value: _vm.filter_keyword },
           on: {
             input: function($event) {
               if ($event.target.composing) {
                 return
               }
-              _vm.$set(_vm.invoicemaker.preparer, "name", $event.target.value)
+              _vm.filter_keyword = $event.target.value
             }
           }
         })
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "field" }, [
-      _c("label", { staticClass: "label" }, [_vm._v("Customer Name")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "control" }, [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.invoicemaker.customer.name,
-              expression: "invoicemaker.customer.name"
-            }
-          ],
-          staticClass: "input",
-          attrs: { type: "text", placeholder: "Customer name" },
-          domProps: { value: _vm.invoicemaker.customer.name },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.invoicemaker.customer, "name", $event.target.value)
-            }
-          }
+    _c("table", { staticClass: "table is-fullwidth" }, [
+      _c(
+        "tbody",
+        _vm._l(_vm.filtered_goods, function(item) {
+          return _vm.invoicemaker.loaded
+            ? _c("tr", [
+                _vm._m(0, true),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(item.Description))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(item.Stock))])
+              ])
+            : _vm._e()
         })
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "field" }, [
-      _c("label", { staticClass: "label" }, [_vm._v("Customer Address")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "control" }, [
-        _c("textarea", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.invoicemaker.customer.address,
-              expression: "invoicemaker.customer.address"
-            }
-          ],
-          staticClass: "textarea",
-          attrs: { placeholder: "Address" },
-          domProps: { value: _vm.invoicemaker.customer.address },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(
-                _vm.invoicemaker.customer,
-                "address",
-                $event.target.value
-              )
-            }
-          }
-        })
-      ])
-    ]),
-    _vm._v(" "),
-    _vm._m(0)
+      )
+    ])
   ])
 }
 var staticRenderFns = [
@@ -32345,47 +32410,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("table", { staticClass: "table is-fullwidth" }, [
-      _c("thead", [
-        _c("tr", [
-          _c("th", [_vm._v("One")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("Two")])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("tbody", [
-        _c("tr", [
-          _c("td", [_vm._v("Three")]),
-          _vm._v(" "),
-          _c("td", [_vm._v("Four")])
-        ]),
-        _vm._v(" "),
-        _c("tr", [
-          _c("td", [_vm._v("Five")]),
-          _vm._v(" "),
-          _c("td", [_vm._v("Six")])
-        ]),
-        _vm._v(" "),
-        _c("tr", [
-          _c("td", [_vm._v("Seven")]),
-          _vm._v(" "),
-          _c("td", [_vm._v("Eight")])
-        ]),
-        _vm._v(" "),
-        _c("tr", [
-          _c("td", [_vm._v("Nine")]),
-          _vm._v(" "),
-          _c("td", [_vm._v("Ten")])
-        ]),
-        _vm._v(" "),
-        _c("tr", [
-          _c("td", [_vm._v("Eleven")]),
-          _vm._v(" "),
-          _c("td", [_vm._v("Twelve")])
-        ])
-      ])
-    ])
+    return _c("td", [_c("button", { staticClass: "button" }, [_vm._v("Add")])])
   }
 ]
 render._withStripped = true
@@ -32449,16 +32474,29 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "columns" }, [
-    _c(
-      "div",
-      { staticClass: "column is-grey is-4" },
-      [_c("im-uploadmodal"), _vm._v(" "), _c("im-sidebar")],
-      1
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "column is-8" }, [_c("im-invoice")], 1)
-  ])
+  return _c(
+    "div",
+    [
+      _c("im-uploadmodal"),
+      _vm._v(" "),
+      _c("div", { staticClass: "columns" }, [
+        _c(
+          "div",
+          { staticClass: "column full-height-column is-grey is-4" },
+          [_c("im-sidebar")],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "column full-height-column is-8" },
+          [_c("im-invoice")],
+          1
+        )
+      ])
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

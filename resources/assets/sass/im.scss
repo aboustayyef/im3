@@ -1,8 +1,16 @@
 // Bootstrap
+$body-size: 14px;
 @import "~bulma/bulma";
-
 .im-sidebar{
     padding:1.5rem;
+}
+.full-height-column{
+	height:100vh;
+	max-height: 100vh;
+	overflow:scroll;
+}
+table{
+	font-size:11px;
 }
 .is-grey{
     background-color: lighten(silver,15);

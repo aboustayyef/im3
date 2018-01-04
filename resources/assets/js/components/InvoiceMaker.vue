@@ -1,12 +1,14 @@
 <template>
-    <div class="columns">
-        <div class="column is-grey is-4">
-            <im-uploadmodal></im-uploadmodal>
-            <im-sidebar></im-sidebar>
-        </div>
-        <div class="column is-8">
-            <im-invoice>
-            </im-invoice>
+    <div>
+        <im-uploadmodal></im-uploadmodal>
+        <div class="columns">
+            <div class="column full-height-column is-grey is-4">
+                <im-sidebar></im-sidebar>
+            </div>
+            <div class="column full-height-column is-8">
+                <im-invoice>
+                </im-invoice>
+            </div>
         </div>
     </div>
 </template>
