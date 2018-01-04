@@ -1,5 +1,5 @@
 <template>
-    <div class="modal">
+    <div id="uploadData" :class="{'modal':true, 'is-active':modalOpen}">
       <div class="modal-background"></div>
       <div class="modal-content">
         
@@ -27,13 +27,19 @@
 
             </form>
                   </div>
-                  <button class="modal-close is-large" aria-label="close"></button>
+                  <button @click="toggleModal" class="modal-close is-large" aria-label="close"></button>
         </div>
     </div>
 </template>
 
 <script>
     export default {
+        props: ['modalOpen'],
+        methods: {
+            toggleModal: function(){
+              this.$emit('toggleModal');
+            }
+        },
         data: function(){
             return {
                 token: document.head.querySelector('meta[name="csrf-token"]').getAttribute('content')

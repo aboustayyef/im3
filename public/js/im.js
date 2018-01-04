@@ -1724,23 +1724,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            filter_keyword: '',
-            invoicemaker: __WEBPACK_IMPORTED_MODULE_0__state_js__["a" /* default */]
-        };
-    },
-    computed: {
-        filtered_goods: function filtered_goods() {
-            if (this.filter_keyword == '') {
-                return this.invoicemaker.goods;
-            }
-            var reg = new RegExp(this.filter_keyword, "gi");
-            return this.invoicemaker.goods.filter(function (good) {
-                return good.Name.match(reg) != null || good.Description.match(reg) != null || good.Code.match(reg) != null || good.Supplier.match(reg) != null;
-            });
-        }
+  data: function data() {
+    return {
+      filter_keyword: '',
+      invoicemaker: __WEBPACK_IMPORTED_MODULE_0__state_js__["a" /* default */]
+    };
+  },
+  methods: {
+    toggleModal: function toggleModal() {
+      this.$emit('toggleModal');
     }
+  },
+  computed: {
+    filtered_goods: function filtered_goods() {
+      if (this.filter_keyword == '') {
+        return this.invoicemaker.goods;
+      }
+      var reg = new RegExp(this.filter_keyword, "gi");
+      return this.invoicemaker.goods.filter(function (good) {
+        return good.Name.match(reg) != null || good.Description.match(reg) != null || good.Code.match(reg) != null || good.Supplier.match(reg) != null;
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -1786,6 +1791,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['modalOpen'],
+    methods: {
+        toggleModal: function toggleModal() {
+            this.$emit('toggleModal');
+        }
+    },
     data: function data() {
         return {
             token: document.head.querySelector('meta[name="csrf-token"]').getAttribute('content')
@@ -1830,9 +1841,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         });
     },
 
+    methods: {
+        toggleModal: function toggleModal() {
+            console.log('toggling modal');
+            this.modalOpen = !this.modalOpen;
+        }
+    },
     data: function data() {
         return {
-            invoicemaker: __WEBPACK_IMPORTED_MODULE_0__state_js__["a" /* default */]
+            invoicemaker: __WEBPACK_IMPORTED_MODULE_0__state_js__["a" /* default */],
+            modalOpen: false
         };
     }
 });
@@ -32167,39 +32185,47 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "modal" }, [
-    _c("div", { staticClass: "modal-background" }),
-    _vm._v(" "),
-    _c("div", { staticClass: "modal-content" }, [
-      _c("div", { staticClass: "box" }, [
-        _c(
-          "form",
-          {
-            attrs: {
-              action: "/uploadCsv",
-              method: "post",
-              enctype: "multipart/form-data"
-            }
-          },
-          [
-            _c("input", {
-              attrs: { type: "hidden", name: "_token" },
-              domProps: { value: _vm.token }
-            }),
-            _vm._v(" "),
-            _vm._m(0),
-            _vm._v(" "),
-            _c("input", { attrs: { type: "submit", value: "submit" } })
-          ]
-        )
-      ]),
+  return _c(
+    "div",
+    {
+      class: { modal: true, "is-active": _vm.modalOpen },
+      attrs: { id: "uploadData" }
+    },
+    [
+      _c("div", { staticClass: "modal-background" }),
       _vm._v(" "),
-      _c("button", {
-        staticClass: "modal-close is-large",
-        attrs: { "aria-label": "close" }
-      })
-    ])
-  ])
+      _c("div", { staticClass: "modal-content" }, [
+        _c("div", { staticClass: "box" }, [
+          _c(
+            "form",
+            {
+              attrs: {
+                action: "/uploadCsv",
+                method: "post",
+                enctype: "multipart/form-data"
+              }
+            },
+            [
+              _c("input", {
+                attrs: { type: "hidden", name: "_token" },
+                domProps: { value: _vm.token }
+              }),
+              _vm._v(" "),
+              _vm._m(0),
+              _vm._v(" "),
+              _c("input", { attrs: { type: "submit", value: "submit" } })
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("button", {
+          staticClass: "modal-close is-large",
+          attrs: { "aria-label": "close" },
+          on: { click: _vm.toggleModal }
+        })
+      ])
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
@@ -32247,9 +32273,18 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "im-sidebar" }, [
-    _c("button", { staticClass: "button is-primary" }, [
-      _vm._v("Upload New Data")
-    ]),
+    _c(
+      "button",
+      {
+        staticClass: "button is-primary",
+        on: {
+          click: function($event) {
+            _vm.toggleModal()
+          }
+        }
+      },
+      [_vm._v("Upload New Data")]
+    ),
     _vm._v(" "),
     _c("hr"),
     _vm._v(" "),
@@ -32360,7 +32395,7 @@ var render = function() {
     _c("hr"),
     _vm._v(" "),
     _c("div", { staticClass: "field" }, [
-      _c("label", { staticClass: "label" }, [_vm._v("Filter")]),
+      _c("label", { staticClass: "label" }, [_vm._v("Pick Items to add")]),
       _vm._v(" "),
       _c("div", { staticClass: "control" }, [
         _c("input", {
@@ -32387,17 +32422,17 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("table", { staticClass: "table is-fullwidth" }, [
+    _c("table", { staticClass: "table is-fullwidth is-narrow is-striped" }, [
       _c(
         "tbody",
         _vm._l(_vm.filtered_goods, function(item) {
           return _vm.invoicemaker.loaded
             ? _c("tr", [
-                _vm._m(0, true),
-                _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(item.Description))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(item.Stock))])
+                _c("td", [_vm._v(_vm._s(item.Stock))]),
+                _vm._v(" "),
+                _vm._m(0, true)
               ])
             : _vm._e()
         })
@@ -32410,7 +32445,11 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("td", [_c("button", { staticClass: "button" }, [_vm._v("Add")])])
+    return _c("td", [
+      _c("button", { staticClass: "button is-primary is-small" }, [
+        _vm._v("Add")
+      ])
+    ])
   }
 ]
 render._withStripped = true
@@ -32477,13 +32516,28 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("im-uploadmodal"),
+      _c("im-uploadmodal", {
+        attrs: { modalOpen: _vm.modalOpen },
+        on: {
+          toggleModal: function($event) {
+            _vm.toggleModal()
+          }
+        }
+      }),
       _vm._v(" "),
       _c("div", { staticClass: "columns" }, [
         _c(
           "div",
           { staticClass: "column full-height-column is-grey is-4" },
-          [_c("im-sidebar")],
+          [
+            _c("im-sidebar", {
+              on: {
+                toggleModal: function($event) {
+                  _vm.toggleModal()
+                }
+              }
+            })
+          ],
           1
         ),
         _vm._v(" "),

@@ -1,6 +1,6 @@
 <template>
     <div class="im-sidebar">
-        <button class="button is-primary">Upload New Data</button>
+        <button @click="toggleModal()" class="button is-primary">Upload New Data</button>
         <hr>
         <div class="columns">
           <div class="column">
@@ -30,18 +30,18 @@
 <hr>  
 
 <div class="field">
-  <label class="label">Filter</label>
+  <label class="label">Pick Items to add</label>
   <div class="control">
     <input class="input" v-model="filter_keyword" type="text" placeholder="search goods">
   </div>
 </div>
 
-<table class="table is-fullwidth">
+<table class="table is-fullwidth is-narrow is-striped">
           <tbody>
             <tr v-if="invoicemaker.loaded" v-for="item in filtered_goods">
-              <td><button class="button">Add</button></td>
               <td>{{item.Description}}</td>
               <td>{{item.Stock}}</td>
+              <td><button class="button is-primary is-small">Add</button></td>
             </tr>
           </tbody>
         </table>
@@ -56,6 +56,11 @@
                 filter_keyword: '',
                 invoicemaker:invoicemaker,
             }
+        },
+        methods: {
+          toggleModal: function(){
+            this.$emit('toggleModal');
+          }
         },
         computed: {
           filtered_goods: function(){
