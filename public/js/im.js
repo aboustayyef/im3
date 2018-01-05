@@ -1653,6 +1653,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1660,6 +1683,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             invoicemaker: __WEBPACK_IMPORTED_MODULE_0__state_js__["a" /* default */]
         };
+    },
+    methods: {
+        remove: function remove(item) {
+            item.AddedToInvoice = 0;
+        }
+    },
+    computed: {
+        added_goods: function added_goods() {
+            return this.invoicemaker.goods.filter(function (good) {
+                return good.AddedToInvoice > 0;
+            });
+        }
+    },
+    filters: {
+        currency: function currency(value) {
+            return 'CH¢ ' + (value * 1.00).toLocaleString('en');
+        }
     }
 });
 
@@ -1733,6 +1773,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   methods: {
     toggleModal: function toggleModal() {
       this.$emit('toggleModal');
+    },
+    increment: function increment(item) {
+      console.log(item.AddedToInvoice);
+      if (item.AddedToInvoice < item.Stock) {
+        item.AddedToInvoice++;
+      }
     }
   },
   computed: {
@@ -32434,7 +32480,20 @@ var render = function() {
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(item.Stock))]),
                 _vm._v(" "),
-                _vm._m(0, true)
+                _c("td", [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "button is-primary is-small",
+                      on: {
+                        click: function($event) {
+                          _vm.increment(item)
+                        }
+                      }
+                    },
+                    [_vm._v("Add")]
+                  )
+                ])
               ])
             : _vm._e()
         })
@@ -32442,18 +32501,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("button", { staticClass: "button is-primary is-small" }, [
-        _vm._v("Add")
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -32472,14 +32520,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("p", [
-      _vm._v(
-        "MessageLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n    proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-      )
-    ]),
-    _vm._v(" "),
-    _c("hr"),
+  return _c("div", { staticStyle: { padding: "1em" } }, [
+    _vm._m(0),
     _vm._v(" "),
     _c("h3", { staticClass: "title is-4" }, [
       _vm._v("Customer: " + _vm._s(_vm.invoicemaker.customer.name))
@@ -32493,10 +32535,89 @@ var render = function() {
     _vm._v(" "),
     _c("h3", { staticClass: "title is-4" }, [
       _vm._v("Prepared By: " + _vm._s(_vm.invoicemaker.preparer.name))
+    ]),
+    _vm._v(" "),
+    _c("table", { staticClass: "table is-fullwidth is-bordered is-striped" }, [
+      _vm._m(1),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.added_goods, function(item) {
+          return _vm.invoicemaker.loaded
+            ? _c("tr", [
+                _c("td", [_vm._v(_vm._s(item.Code))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(item.Brand))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(item.Name))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(_vm._f("currency")(item.PriceEx)))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(item.AddedToInvoice))]),
+                _vm._v(" "),
+                _c("td", [
+                  _vm._v(
+                    _vm._s(
+                      _vm._f("currency")(item.PriceEx * item.AddedToInvoice)
+                    )
+                  )
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "button is-danger",
+                      on: {
+                        click: function($event) {
+                          _vm.remove(item)
+                        }
+                      }
+                    },
+                    [_vm._v("Remove")]
+                  )
+                ])
+              ])
+            : _vm._e()
+        })
+      )
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "level" }, [
+      _c("div", { staticClass: "level-left" }, [_vm._v("Quote")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "level-right" }, [_vm._v("Tarzan")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Code")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Brand")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Price")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Qty")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Total")]),
+        _vm._v(" "),
+        _c("th")
+      ])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

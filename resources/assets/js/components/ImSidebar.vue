@@ -41,7 +41,7 @@
             <tr v-if="invoicemaker.loaded" v-for="item in filtered_goods">
               <td>{{item.Name}} - {{item.Description}}</td>
               <td>{{item.Stock}}</td>
-              <td><button class="button is-primary is-small">Add</button></td>
+              <td><button @click="increment(item)" class="button is-primary is-small">Add</button></td>
             </tr>
           </tbody>
         </table>
@@ -60,6 +60,12 @@
         methods: {
           toggleModal: function(){
             this.$emit('toggleModal');
+          },
+          increment: function(item){
+            console.log(item.AddedToInvoice);
+            if (item.AddedToInvoice < item.Stock) {
+              item.AddedToInvoice++
+            }
           }
         },
         computed: {
@@ -74,7 +80,7 @@
                   (good.Code.match(reg) != null) ||
                   (good.Supplier.match(reg) != null)
             );
-          } 
+          }
         }
     }
 </script>
