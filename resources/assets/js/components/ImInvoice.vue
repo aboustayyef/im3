@@ -1,5 +1,5 @@
 <template>
-    <div style="padding:1em">
+    <div class="section">
         <div class="level">
             <div class="level-left">Quote</div>
             <div class="level-right">Tarzan</div>
