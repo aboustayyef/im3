@@ -32428,7 +32428,9 @@ var render = function() {
         _vm._l(_vm.filtered_goods, function(item) {
           return _vm.invoicemaker.loaded
             ? _c("tr", [
-                _c("td", [_vm._v(_vm._s(item.Description))]),
+                _c("td", [
+                  _vm._v(_vm._s(item.Name) + " - " + _vm._s(item.Description))
+                ]),
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(item.Stock))]),
                 _vm._v(" "),

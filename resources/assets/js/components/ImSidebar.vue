@@ -39,7 +39,7 @@
 <table class="table is-fullwidth is-narrow is-striped">
           <tbody>
             <tr v-if="invoicemaker.loaded" v-for="item in filtered_goods">
-              <td>{{item.Description}}</td>
+              <td>{{item.Name}} - {{item.Description}}</td>
               <td>{{item.Stock}}</td>
               <td><button class="button is-primary is-small">Add</button></td>
             </tr>
