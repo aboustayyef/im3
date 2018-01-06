@@ -2,10 +2,10 @@
     <div>
         <im-uploadmodal :modalOpen="modalOpen" v-on:toggleModal="toggleModal()"></im-uploadmodal>
         <div class="columns">
-            <div class="column full-height-column is-grey is-4">
+            <div class="column full-height-column is-grey is-3">
                 <im-sidebar v-on:toggleModal="toggleModal()"></im-sidebar>
             </div>
-            <div class="column full-height-column is-8">
+            <div class="column full-height-column is-9">
                 <im-invoice>
                 </im-invoice>
             </div>

@@ -32381,107 +32381,91 @@ var render = function() {
     _vm._v(" "),
     _c("hr"),
     _vm._v(" "),
-    _c("div", { staticClass: "columns" }, [
-      _c("div", { staticClass: "column" }, [
-        _c("div", { staticClass: "field" }, [
-          _c("label", { staticClass: "label" }, [
-            _vm._v("Invoice Prepared By")
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "control" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.invoicemaker.preparer.name,
-                  expression: "invoicemaker.preparer.name"
-                }
-              ],
-              staticClass: "input",
-              attrs: { type: "text", placeholder: "Blue Gallery Staff" },
-              domProps: { value: _vm.invoicemaker.preparer.name },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(
-                    _vm.invoicemaker.preparer,
-                    "name",
-                    $event.target.value
-                  )
-                }
-              }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "field" }, [
-          _c("label", { staticClass: "label" }, [_vm._v("Customer Name")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "control" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.invoicemaker.customer.name,
-                  expression: "invoicemaker.customer.name"
-                }
-              ],
-              staticClass: "input",
-              attrs: { type: "text", placeholder: "Customer name" },
-              domProps: { value: _vm.invoicemaker.customer.name },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(
-                    _vm.invoicemaker.customer,
-                    "name",
-                    $event.target.value
-                  )
-                }
-              }
-            })
-          ])
-        ])
-      ]),
+    _c("div", { staticClass: "field" }, [
+      _c("label", { staticClass: "label" }, [_vm._v("Invoice Prepared By")]),
       _vm._v(" "),
-      _c("div", { staticClass: "column" }, [
-        _c("div", { staticClass: "field" }, [
-          _c("label", { staticClass: "label" }, [_vm._v("Customer Address")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "control" }, [
-            _c("textarea", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.invoicemaker.customer.address,
-                  expression: "invoicemaker.customer.address"
-                }
-              ],
-              staticClass: "textarea",
-              attrs: { placeholder: "Address" },
-              domProps: { value: _vm.invoicemaker.customer.address },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(
-                    _vm.invoicemaker.customer,
-                    "address",
-                    $event.target.value
-                  )
-                }
+      _c("div", { staticClass: "control" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.invoicemaker.preparer.name,
+              expression: "invoicemaker.preparer.name"
+            }
+          ],
+          staticClass: "input",
+          attrs: { type: "text", placeholder: "Blue Gallery Staff" },
+          domProps: { value: _vm.invoicemaker.preparer.name },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
               }
-            })
-          ])
-        ])
+              _vm.$set(_vm.invoicemaker.preparer, "name", $event.target.value)
+            }
+          }
+        })
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "field" }, [
+      _c("label", { staticClass: "label" }, [_vm._v("Customer Name")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "control" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.invoicemaker.customer.name,
+              expression: "invoicemaker.customer.name"
+            }
+          ],
+          staticClass: "input",
+          attrs: { type: "text", placeholder: "Customer name" },
+          domProps: { value: _vm.invoicemaker.customer.name },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.invoicemaker.customer, "name", $event.target.value)
+            }
+          }
+        })
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "field" }, [
+      _c("label", { staticClass: "label" }, [_vm._v("Customer Address")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "control" }, [
+        _c("textarea", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.invoicemaker.customer.address,
+              expression: "invoicemaker.customer.address"
+            }
+          ],
+          staticClass: "textarea",
+          attrs: { placeholder: "Address" },
+          domProps: { value: _vm.invoicemaker.customer.address },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(
+                _vm.invoicemaker.customer,
+                "address",
+                $event.target.value
+              )
+            }
+          }
+        })
       ])
     ]),
     _vm._v(" "),
@@ -32782,7 +32766,7 @@ var render = function() {
       _c("div", { staticClass: "columns" }, [
         _c(
           "div",
-          { staticClass: "column full-height-column is-grey is-4" },
+          { staticClass: "column full-height-column is-grey is-3" },
           [
             _c("im-sidebar", {
               on: {
@@ -32797,7 +32781,7 @@ var render = function() {
         _vm._v(" "),
         _c(
           "div",
-          { staticClass: "column full-height-column is-8" },
+          { staticClass: "column full-height-column is-9" },
           [_c("im-invoice")],
           1
         )
