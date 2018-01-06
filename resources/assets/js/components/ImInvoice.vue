@@ -29,7 +29,7 @@
                                 <th>Price</th>
                                 <th>Qty</th>
                                 <th>Total</th>
-                                <th></th>
+                                <th class="no-print"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -40,7 +40,7 @@
                               <td>{{item.PriceEx | currency}}</td>
                               <td>{{item.AddedToInvoice}}</td>
                               <td>{{item.PriceEx * item.AddedToInvoice | currency}}</td>
-                              <td><button @click="remove(item)" class="button is-danger">Remove</button></td>
+                              <td class="no-print"><button @click="remove(item)" class="button is-danger">Remove</button></td>
                             </tr>
                         </tbody>
                         <p>Note: All prices are in GH¢</p>

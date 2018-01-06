@@ -32825,7 +32825,7 @@ var render = function() {
                             )
                           ]),
                           _vm._v(" "),
-                          _c("td", [
+                          _c("td", { staticClass: "no-print" }, [
                             _c(
                               "button",
                               {
@@ -32954,7 +32954,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Total")]),
         _vm._v(" "),
-        _c("th")
+        _c("th", { staticClass: "no-print" })
       ])
     ])
   },
