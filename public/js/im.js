@@ -33013,7 +33013,7 @@ var render = function() {
       _c("div", { staticClass: "columns" }, [
         _c(
           "div",
-          { staticClass: "column full-height-column is-grey is-3" },
+          { staticClass: "column full-height-column is-grey is-3 no-print" },
           [
             _c("im-left-sidebar", {
               on: {
@@ -33028,14 +33028,17 @@ var render = function() {
         _vm._v(" "),
         _c(
           "div",
-          { staticClass: "column full-height-column is-7" },
+          {
+            staticClass: "column full-height-column is-7",
+            attrs: { id: "printable" }
+          },
           [_c("im-invoice")],
           1
         ),
         _vm._v(" "),
         _c(
           "div",
-          { staticClass: "column full-height-column is-grey is-2" },
+          { staticClass: "column full-height-column is-grey is-2 no-print" },
           [
             _c("im-right-sidebar", {
               on: {

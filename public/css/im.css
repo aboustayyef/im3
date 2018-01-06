@@ -11483,11 +11483,13 @@ table {
   width: 794px;
   height: 1123px;
   padding: 2.5em;
+  margin: 1em auto;
   border: 1px solid silver;
 }
 
 @media print {
   #output {
+    display: block;
     border: none;
   }
 }
@@ -11495,5 +11497,25 @@ table {
 #contact-info {
   text-align: center;
   font-style: italic;
+}
+
+@media print {
+  .no-print {
+    display: none;
+  }
+
+  #printable,
+  #output {
+    width: 25cm;
+    height: 20cm;
+  }
+
+  .section {
+    padding: 0;
+  }
+
+@page {
+    margin: 2cm;
+}
 }
 
