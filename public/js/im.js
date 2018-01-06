@@ -1913,6 +1913,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1921,6 +1923,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             filter_keyword: '',
             invoicemaker: __WEBPACK_IMPORTED_MODULE_0__state_js__["a" /* default */]
         };
+    },
+    methods: {
+        clearDiscount: function clearDiscount() {
+            __WEBPACK_IMPORTED_MODULE_0__state_js__["a" /* default */].discount.amount = 0.00;
+            __WEBPACK_IMPORTED_MODULE_0__state_js__["a" /* default */].discount.percentage = 0.00;
+        }
     }
 });
 
@@ -32527,7 +32535,20 @@ var render = function() {
             })
           ])
         ])
-      : _vm._e()
+      : _vm._e(),
+    _vm._v(" "),
+    _c(
+      "button",
+      {
+        staticClass: "button",
+        on: {
+          click: function($event) {
+            _vm.clearDiscount()
+          }
+        }
+      },
+      [_vm._v("Clear")]
+    )
   ])
 }
 var staticRenderFns = [

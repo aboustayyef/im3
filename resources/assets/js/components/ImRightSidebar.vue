@@ -39,11 +39,13 @@
         </div>
 
         <div class="field" v-if="invoicemaker.discount.percentage == 0">
-        <label class="label">By Amount</label>
-        <div class="control">
-        <input class="input" v-model="invoicemaker.discount.amount" type="text">
+            <label class="label">By Amount</label>
+            <div class="control">
+                <input class="input" v-model="invoicemaker.discount.amount" type="text">
+            </div>
         </div>
-        </div>
+
+        <button class="button"@click="clearDiscount()">Clear</button>
 
     </div>
 </template>
@@ -57,5 +59,11 @@
             invoicemaker:invoicemaker,
         }
       },
+    methods: {
+        clearDiscount: function(){
+            invoicemaker.discount.amount = 0.00;
+            invoicemaker.discount.percentage = 0.00;
+        }
+        }
     }
 </script>

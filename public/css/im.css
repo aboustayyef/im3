@@ -11489,7 +11489,6 @@ table {
 
 @media print {
   #output {
-    display: block;
     border: none;
   }
 }
@@ -11506,16 +11505,11 @@ table {
 
   #printable,
   #output {
-    width: 25cm;
-    height: 20cm;
+    width: 100%;
   }
 
   .section {
     padding: 0;
   }
-
-@page {
-    margin: 2cm;
-}
 }
 
