@@ -64,7 +64,24 @@
                         </div>
 
                     </div>
-                    <div class="level-right">Totals go here</div>
+                    <div class="level-right">
+                        <div style="text-align:right">
+                            <p class="is-size-6">Total: {{totalExcludingTax | currency}}</p>
+                            <p class="is-size-6">Vat: {{vat | currency}}</p>
+                            <hr>
+                            <!-- With discount -->
+                            <div v-if="invoicemaker.discount > 0"> 
+                                <p class="is-size-6 "> Total Before Discount: {{totalIncludingTax | currency}}</p>
+                                <p class="is-size-6">Discount ({{invoicemaker.discount}}%): - {{appliedDiscount | currency}}</p>
+                                <hr>
+                                <p class="is-size-5 has-text-weight-bold">Payable: {{payable | currency}}</p>
+                            </div>
+                            <!-- Without discount -->
+                            <div v-else>
+                                <p class="is-size-5 has-text-weight-bold">Payable: {{payable | currency}}</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <hr>
                 <div id="contact-info">
@@ -102,7 +119,27 @@
             return this.invoicemaker.goods.filter((good) => 
                   good.AddedToInvoice > 0
             );
-          }
+          },
+          totalIncludingTax: function(){
+            return this.added_goods.reduce(function(total, item){
+                return total + (item.PriceIn * item.AddedToInvoice);
+            },0.00)
+          },
+          totalExcludingTax: function(){
+            return this.added_goods.reduce(function(total, item){
+                return total + (item.PriceEx * item.AddedToInvoice);
+            },0.00)
+          },
+          vat: function(){
+            return this.totalIncludingTax - this.totalExcludingTax;
+          },
+          appliedDiscount: function(){
+            return (this.totalIncludingTax * this.invoicemaker.discount) / 100;
+          },
+          payable: function(){
+            return this.totalIncludingTax - this.appliedDiscount;
+          },
+
         },
         filters: {
           currency: function (value) {

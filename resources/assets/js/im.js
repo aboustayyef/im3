@@ -17,7 +17,8 @@ window.Vue = require('vue');
 
 Vue.component('invoicemaker', require('./components/InvoiceMaker.vue'));
 Vue.component('im-uploadmodal', require('./components/ImUploadmodal.vue'));
-Vue.component('im-sidebar', require('./components/ImSidebar.vue'));
+Vue.component('im-left-sidebar', require('./components/ImLeftSidebar.vue'));
+Vue.component('im-right-sidebar', require('./components/ImRightSidebar.vue'));
 Vue.component('im-invoice', require('./components/ImInvoice.vue'));
 
 const app = new Vue({

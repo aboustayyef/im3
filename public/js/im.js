@@ -1723,67 +1723,78 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            invoicemaker: __WEBPACK_IMPORTED_MODULE_0__state_js__["a" /* default */]
-        };
-    },
-    methods: {
-        remove: function remove(item) {
-            item.AddedToInvoice = 0;
-        }
-    },
-    computed: {
-        added_goods: function added_goods() {
-            return this.invoicemaker.goods.filter(function (good) {
-                return good.AddedToInvoice > 0;
-            });
-        }
-    },
-    filters: {
-        currency: function currency(value) {
-            return (value * 1.00).toLocaleString('en');
-        }
+  data: function data() {
+    return {
+      invoicemaker: __WEBPACK_IMPORTED_MODULE_0__state_js__["a" /* default */]
+    };
+  },
+  methods: {
+    remove: function remove(item) {
+      item.AddedToInvoice = 0;
     }
+  },
+  computed: {
+    added_goods: function added_goods() {
+      return this.invoicemaker.goods.filter(function (good) {
+        return good.AddedToInvoice > 0;
+      });
+    },
+    totalIncludingTax: function totalIncludingTax() {
+      return this.added_goods.reduce(function (total, item) {
+        return total + item.PriceIn * item.AddedToInvoice;
+      }, 0.00);
+    },
+    totalExcludingTax: function totalExcludingTax() {
+      return this.added_goods.reduce(function (total, item) {
+        return total + item.PriceEx * item.AddedToInvoice;
+      }, 0.00);
+    },
+    vat: function vat() {
+      return this.totalIncludingTax - this.totalExcludingTax;
+    },
+    appliedDiscount: function appliedDiscount() {
+      return this.totalIncludingTax * this.invoicemaker.discount / 100;
+    },
+    payable: function payable() {
+      return this.totalIncludingTax - this.appliedDiscount;
+    }
+
+  },
+  filters: {
+    currency: function currency(value) {
+      return (value * 1.00).toLocaleString('en');
+    }
+  }
 });
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/ImSidebar.vue":
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/ImLeftSidebar.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__state_js__ = __webpack_require__("./resources/assets/js/state.js");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -1839,6 +1850,63 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
     }
   }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/ImRightSidebar.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__state_js__ = __webpack_require__("./resources/assets/js/state.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            filter_keyword: '',
+            invoicemaker: __WEBPACK_IMPORTED_MODULE_0__state_js__["a" /* default */]
+        };
+    }
 });
 
 /***/ }),
@@ -1905,6 +1973,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__state_js__ = __webpack_require__("./resources/assets/js/state.js");
+//
+//
+//
 //
 //
 //
@@ -32271,94 +32342,7 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-6009163e\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/ImUploadmodal.vue":
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      class: { modal: true, "is-active": _vm.modalOpen },
-      attrs: { id: "uploadData" }
-    },
-    [
-      _c("div", { staticClass: "modal-background" }),
-      _vm._v(" "),
-      _c("div", { staticClass: "modal-content" }, [
-        _c("div", { staticClass: "box" }, [
-          _c(
-            "form",
-            {
-              attrs: {
-                action: "/uploadCsv",
-                method: "post",
-                enctype: "multipart/form-data"
-              }
-            },
-            [
-              _c("input", {
-                attrs: { type: "hidden", name: "_token" },
-                domProps: { value: _vm.token }
-              }),
-              _vm._v(" "),
-              _vm._m(0),
-              _vm._v(" "),
-              _c("input", { attrs: { type: "submit", value: "submit" } })
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("button", {
-          staticClass: "modal-close is-large",
-          attrs: { "aria-label": "close" },
-          on: { click: _vm.toggleModal }
-        })
-      ])
-    ]
-  )
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "file is-large" }, [
-      _c("label", { staticClass: "file-label" }, [
-        _c("input", {
-          staticClass: "file-input",
-          attrs: { type: "file", name: "csv" }
-        }),
-        _vm._v(" "),
-        _c("span", { staticClass: "file-cta" }, [
-          _c("span", { staticClass: "file-icon" }, [
-            _c("i", { staticClass: "fa fa-upload" })
-          ]),
-          _vm._v(" "),
-          _c("span", { staticClass: "file-label" }, [
-            _vm._v(
-              "\n                    Choose a csv file\n                  "
-            )
-          ])
-        ])
-      ])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-6009163e", module.exports)
-  }
-}
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-a33d0d1e\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/ImSidebar.vue":
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-335c08db\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/ImRightSidebar.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -32366,21 +32350,6 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "im-sidebar" }, [
-    _c(
-      "button",
-      {
-        staticClass: "button is-primary",
-        on: {
-          click: function($event) {
-            _vm.toggleModal()
-          }
-        }
-      },
-      [_vm._v("Upload New Data")]
-    ),
-    _vm._v(" "),
-    _c("hr"),
-    _vm._v(" "),
     _c("div", { staticClass: "field" }, [
       _c("label", { staticClass: "label" }, [_vm._v("Invoice Prepared By")]),
       _vm._v(" "),
@@ -32469,6 +32438,168 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
+    _c("label", { staticClass: "label" }, [_vm._v("Discount (optional)")]),
+    _vm._v(" "),
+    _c("div", { staticClass: "field has-addons" }, [
+      _c("p", { staticClass: "control" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.invoicemaker.discount,
+              expression: "invoicemaker.discount"
+            }
+          ],
+          staticClass: "input",
+          attrs: { type: "text", placeholder: "0.00" },
+          domProps: { value: _vm.invoicemaker.discount },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.invoicemaker, "discount", $event.target.value)
+            }
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _vm._m(0)
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticClass: "control" }, [
+      _c("a", { staticClass: "button is-static" }, [
+        _vm._v("\n          %\n        ")
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-335c08db", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-6009163e\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/ImUploadmodal.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      class: { modal: true, "is-active": _vm.modalOpen },
+      attrs: { id: "uploadData" }
+    },
+    [
+      _c("div", { staticClass: "modal-background" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "modal-content" }, [
+        _c("div", { staticClass: "box" }, [
+          _c(
+            "form",
+            {
+              attrs: {
+                action: "/uploadCsv",
+                method: "post",
+                enctype: "multipart/form-data"
+              }
+            },
+            [
+              _c("input", {
+                attrs: { type: "hidden", name: "_token" },
+                domProps: { value: _vm.token }
+              }),
+              _vm._v(" "),
+              _vm._m(0),
+              _vm._v(" "),
+              _c("input", { attrs: { type: "submit", value: "submit" } })
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("button", {
+          staticClass: "modal-close is-large",
+          attrs: { "aria-label": "close" },
+          on: { click: _vm.toggleModal }
+        })
+      ])
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "file is-large" }, [
+      _c("label", { staticClass: "file-label" }, [
+        _c("input", {
+          staticClass: "file-input",
+          attrs: { type: "file", name: "csv" }
+        }),
+        _vm._v(" "),
+        _c("span", { staticClass: "file-cta" }, [
+          _c("span", { staticClass: "file-icon" }, [
+            _c("i", { staticClass: "fa fa-upload" })
+          ]),
+          _vm._v(" "),
+          _c("span", { staticClass: "file-label" }, [
+            _vm._v(
+              "\n                    Choose a csv file\n                  "
+            )
+          ])
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-6009163e", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-7465006a\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/ImLeftSidebar.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "im-sidebar" }, [
+    _c(
+      "button",
+      {
+        staticClass: "button is-primary",
+        on: {
+          click: function($event) {
+            _vm.toggleModal()
+          }
+        }
+      },
+      [_vm._v("Upload New Data")]
+    ),
+    _vm._v(" "),
     _c("hr"),
     _vm._v(" "),
     _c("div", { staticClass: "field" }, [
@@ -32538,7 +32669,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-a33d0d1e", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-7465006a", module.exports)
   }
 }
 
@@ -32649,7 +32780,55 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "level-right" }, [_vm._v("Totals go here")])
+          _c("div", { staticClass: "level-right" }, [
+            _c("div", { staticStyle: { "text-align": "right" } }, [
+              _c("p", { staticClass: "is-size-6" }, [
+                _vm._v(
+                  "Total: " + _vm._s(_vm._f("currency")(_vm.totalExcludingTax))
+                )
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "is-size-6" }, [
+                _vm._v("Vat: " + _vm._s(_vm._f("currency")(_vm.vat)))
+              ]),
+              _vm._v(" "),
+              _c("hr"),
+              _vm._v(" "),
+              _vm.invoicemaker.discount > 0
+                ? _c("div", [
+                    _c("p", { staticClass: "is-size-6 " }, [
+                      _vm._v(
+                        " Total Before Discount: " +
+                          _vm._s(_vm._f("currency")(_vm.totalIncludingTax))
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "is-size-6" }, [
+                      _vm._v(
+                        "Discount (" +
+                          _vm._s(_vm.invoicemaker.discount) +
+                          "%): - " +
+                          _vm._s(_vm._f("currency")(_vm.appliedDiscount))
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("hr"),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "is-size-5 has-text-weight-bold" }, [
+                      _vm._v(
+                        "Payable: " + _vm._s(_vm._f("currency")(_vm.payable))
+                      )
+                    ])
+                  ])
+                : _c("div", [
+                    _c("p", { staticClass: "is-size-5 has-text-weight-bold" }, [
+                      _vm._v(
+                        "Payable: " + _vm._s(_vm._f("currency")(_vm.payable))
+                      )
+                    ])
+                  ])
+            ])
+          ])
         ]),
         _vm._v(" "),
         _c("hr"),
@@ -32768,7 +32947,7 @@ var render = function() {
           "div",
           { staticClass: "column full-height-column is-grey is-3" },
           [
-            _c("im-sidebar", {
+            _c("im-left-sidebar", {
               on: {
                 toggleModal: function($event) {
                   _vm.toggleModal()
@@ -32781,8 +32960,23 @@ var render = function() {
         _vm._v(" "),
         _c(
           "div",
-          { staticClass: "column full-height-column is-9" },
+          { staticClass: "column full-height-column is-7" },
           [_c("im-invoice")],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "column full-height-column is-grey is-2" },
+          [
+            _c("im-right-sidebar", {
+              on: {
+                toggleModal: function($event) {
+                  _vm.toggleModal()
+                }
+              }
+            })
+          ],
           1
         )
       ])
@@ -43786,15 +43980,15 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ "./resources/assets/js/components/ImSidebar.vue":
+/***/ "./resources/assets/js/components/ImLeftSidebar.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
 /* script */
-var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/ImSidebar.vue")
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/ImLeftSidebar.vue")
 /* template */
-var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-a33d0d1e\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/ImSidebar.vue")
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-7465006a\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/ImLeftSidebar.vue")
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -43811,7 +44005,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/ImSidebar.vue"
+Component.options.__file = "resources/assets/js/components/ImLeftSidebar.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -43820,9 +44014,57 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-a33d0d1e", Component.options)
+    hotAPI.createRecord("data-v-7465006a", Component.options)
   } else {
-    hotAPI.reload("data-v-a33d0d1e", Component.options)
+    hotAPI.reload("data-v-7465006a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/ImRightSidebar.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/ImRightSidebar.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-335c08db\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/ImRightSidebar.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/ImRightSidebar.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-335c08db", Component.options)
+  } else {
+    hotAPI.reload("data-v-335c08db", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -43952,7 +44194,8 @@ window.Vue = __webpack_require__("./node_modules/vue/dist/vue.common.js");
 
 Vue.component('invoicemaker', __webpack_require__("./resources/assets/js/components/InvoiceMaker.vue"));
 Vue.component('im-uploadmodal', __webpack_require__("./resources/assets/js/components/ImUploadmodal.vue"));
-Vue.component('im-sidebar', __webpack_require__("./resources/assets/js/components/ImSidebar.vue"));
+Vue.component('im-left-sidebar', __webpack_require__("./resources/assets/js/components/ImLeftSidebar.vue"));
+Vue.component('im-right-sidebar', __webpack_require__("./resources/assets/js/components/ImRightSidebar.vue"));
 Vue.component('im-invoice', __webpack_require__("./resources/assets/js/components/ImInvoice.vue"));
 
 var app = new Vue({
@@ -43974,6 +44217,7 @@ var app = new Vue({
     preparer: {
         name: ''
     },
+    discount: 0.00,
     loaded: 0
 });
 

@@ -3,11 +3,14 @@
         <im-uploadmodal :modalOpen="modalOpen" v-on:toggleModal="toggleModal()"></im-uploadmodal>
         <div class="columns">
             <div class="column full-height-column is-grey is-3">
-                <im-sidebar v-on:toggleModal="toggleModal()"></im-sidebar>
+                <im-left-sidebar v-on:toggleModal="toggleModal()"></im-left-sidebar>
             </div>
-            <div class="column full-height-column is-9">
+            <div class="column full-height-column is-7">
                 <im-invoice>
                 </im-invoice>
+            </div>
+            <div class="column full-height-column is-grey is-2">
+                <im-right-sidebar v-on:toggleModal="toggleModal()"></im-right-sidebar>
             </div>
         </div>
     </div>
