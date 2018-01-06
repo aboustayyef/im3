@@ -21,16 +21,28 @@
         </div>
         </div>
         
-        <label class="label">Discount (optional)</label>
-        <div class="field has-addons">
-          <p class="control">
-            <input v-model="invoicemaker.discount" class="input" type="text" placeholder="0.00">
-          </p>
-          <p class="control">
-            <a class="button is-static">
-              %
-            </a>
-          </p>
+        <hr>
+        <h3 class="title is-4">Discount(optional)</h3>
+
+        <div v-if="invoicemaker.discount.amount == 0">
+            <label class="label">By Percentage</label>
+            <div class="field has-addons">
+              <p class="control">
+                <input v-model="invoicemaker.discount.percentage" class="input" type="text">
+              </p>
+              <p class="control">
+                <a class="button is-static">
+                  %
+                </a>
+              </p>
+            </div>
+        </div>
+
+        <div class="field" v-if="invoicemaker.discount.percentage == 0">
+        <label class="label">By Amount</label>
+        <div class="control">
+        <input class="input" v-model="invoicemaker.discount.amount" type="text">
+        </div>
         </div>
 
     </div>

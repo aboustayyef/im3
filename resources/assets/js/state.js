@@ -7,6 +7,9 @@ export default {
     preparer: {
         name:'',
     },
-    discount: 0.00,
+    discount: {
+        percentage: 0.00,
+        amount: 0.00
+    },
     loaded:0
 };
