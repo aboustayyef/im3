@@ -1773,8 +1773,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       return this.totalIncludingTax - this.totalExcludingTax;
     },
     appliedDiscount: function appliedDiscount() {
-      if (this.invoicemaker.discount.percentage > 0) {
-        return this.totalIncludingTax * this.invoicemaker.discount.percentage / 100;
+      if (this.invoicemaker.discount.type == 'percentage') {
+        return this.totalIncludingTax * this.invoicemaker.discount.amount / 100;
       }
       return this.invoicemaker.discount.amount;
     },
@@ -1902,19 +1902,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1927,7 +1914,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         clearDiscount: function clearDiscount() {
             __WEBPACK_IMPORTED_MODULE_0__state_js__["a" /* default */].discount.amount = 0.00;
-            __WEBPACK_IMPORTED_MODULE_0__state_js__["a" /* default */].discount.percentage = 0.00;
+            document.getElementById("discount").focus();
         }
     }
 });
@@ -32465,104 +32452,81 @@ var render = function() {
     _vm._v(" "),
     _c("h3", { staticClass: "title is-4" }, [_vm._v("Discount(optional)")]),
     _vm._v(" "),
-    _vm.invoicemaker.discount.amount == 0
-      ? _c("div", [
-          _c("label", { staticClass: "label" }, [_vm._v("By Percentage")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "field has-addons" }, [
-            _c("p", { staticClass: "control" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.invoicemaker.discount.percentage,
-                    expression: "invoicemaker.discount.percentage"
-                  }
-                ],
-                staticClass: "input",
-                attrs: { type: "text" },
-                domProps: { value: _vm.invoicemaker.discount.percentage },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(
-                      _vm.invoicemaker.discount,
-                      "percentage",
-                      $event.target.value
-                    )
-                  }
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _vm._m(0)
-          ])
-        ])
-      : _vm._e(),
-    _vm._v(" "),
-    _vm.invoicemaker.discount.percentage == 0
-      ? _c("div", { staticClass: "field" }, [
-          _c("label", { staticClass: "label" }, [_vm._v("By Amount")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "control" }, [
-            _c("input", {
+    _c("div", { staticClass: "field has-addons" }, [
+      _c("p", { staticClass: "control" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.invoicemaker.discount.amount,
+              expression: "invoicemaker.discount.amount"
+            }
+          ],
+          staticClass: "input",
+          attrs: { id: "discount", type: "text", placeholder: "Discount" },
+          domProps: { value: _vm.invoicemaker.discount.amount },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.invoicemaker.discount, "amount", $event.target.value)
+            }
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("p", { staticClass: "control" }, [
+        _c("span", { staticClass: "select" }, [
+          _c(
+            "select",
+            {
               directives: [
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.invoicemaker.discount.amount,
-                  expression: "invoicemaker.discount.amount"
+                  value: _vm.invoicemaker.discount.type,
+                  expression: "invoicemaker.discount.type"
                 }
               ],
-              staticClass: "input",
-              attrs: { type: "text" },
-              domProps: { value: _vm.invoicemaker.discount.amount },
               on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
+                change: [
+                  function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.invoicemaker.discount,
+                      "type",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  },
+                  function($event) {
+                    _vm.clearDiscount()
                   }
-                  _vm.$set(
-                    _vm.invoicemaker.discount,
-                    "amount",
-                    $event.target.value
-                  )
-                }
+                ]
               }
-            })
-          ])
+            },
+            [
+              _c("option", { domProps: { value: "percentage" } }, [
+                _vm._v("%")
+              ]),
+              _vm._v(" "),
+              _c("option", { domProps: { value: "GHS" } }, [_vm._v("GHS")])
+            ]
+          )
         ])
-      : _vm._e(),
-    _vm._v(" "),
-    _c(
-      "button",
-      {
-        staticClass: "button",
-        on: {
-          click: function($event) {
-            _vm.clearDiscount()
-          }
-        }
-      },
-      [_vm._v("Clear")]
-    )
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", { staticClass: "control" }, [
-      _c("a", { staticClass: "button is-static" }, [
-        _vm._v("\n              %\n            ")
       ])
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -32887,11 +32851,11 @@ var render = function() {
                     _vm._v(" "),
                     _c("p", { staticClass: "is-size-6" }, [
                       _vm._v("Discount "),
-                      _vm.invoicemaker.discount.percentage > 0
+                      _vm.invoicemaker.discount.type == "percentage"
                         ? _c("span", [
                             _vm._v(
                               "(" +
-                                _vm._s(_vm.invoicemaker.discount.percentage) +
+                                _vm._s(_vm.invoicemaker.discount.amount) +
                                 "%)"
                             )
                           ])
@@ -44310,7 +44274,7 @@ var app = new Vue({
         name: ''
     },
     discount: {
-        percentage: 0.00,
+        type: 'percentage',
         amount: 0.00
     },
     loaded: 0

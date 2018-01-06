@@ -72,7 +72,7 @@
                             <!-- With discount -->
                             <div v-if="appliedDiscount > 0"> 
                                 <p class="is-size-6 "> Total Before Discount: {{totalIncludingTax | currency}}</p>
-                                <p class="is-size-6">Discount <span v-if="invoicemaker.discount.percentage > 0">({{invoicemaker.discount.percentage}}%)</span>: - {{appliedDiscount | currency}}</p>
+                                <p class="is-size-6">Discount <span v-if="invoicemaker.discount.type == 'percentage' ">({{invoicemaker.discount.amount}}%)</span>: - {{appliedDiscount | currency}}</p>
                                 <hr>
                                 <p class="is-size-5 has-text-weight-bold">Payable: {{payable | currency}}</p>
                             </div>
@@ -134,8 +134,8 @@
             return this.totalIncludingTax - this.totalExcludingTax;
           },
           appliedDiscount: function(){
-            if (this.invoicemaker.discount.percentage > 0) {
-                return (this.totalIncludingTax * this.invoicemaker.discount.percentage) / 100;
+            if (this.invoicemaker.discount.type == 'percentage') {
+                return (this.totalIncludingTax * this.invoicemaker.discount.amount) / 100;
             }
             return this.invoicemaker.discount.amount;
           },

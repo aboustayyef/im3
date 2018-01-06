@@ -8,7 +8,7 @@ export default {
         name:'',
     },
     discount: {
-        percentage: 0.00,
+        type: 'percentage',
         amount: 0.00
     },
     loaded:0
