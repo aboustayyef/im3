@@ -1676,6 +1676,53 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1698,7 +1745,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     filters: {
         currency: function currency(value) {
-            return 'CH¢ ' + (value * 1.00).toLocaleString('en');
+            return (value * 1.00).toLocaleString('en');
         }
     }
 });
@@ -32454,7 +32501,7 @@ var render = function() {
             }
           ],
           staticClass: "input",
-          attrs: { type: "text", placeholder: "search goods" },
+          attrs: { type: "text", placeholder: "search..." },
           domProps: { value: _vm.filter_keyword },
           on: {
             input: function($event) {
@@ -32521,66 +32568,110 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "section" }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c("h3", { staticClass: "title is-4" }, [
-      _vm._v("Customer: " + _vm._s(_vm.invoicemaker.customer.name))
-    ]),
-    _vm._v(" "),
-    _c("h4", { staticClass: "subtitle is-4" }, [
-      _vm._v("Address: " + _vm._s(_vm.invoicemaker.customer.address))
-    ]),
-    _vm._v(" "),
-    _c("hr"),
-    _vm._v(" "),
-    _c("h3", { staticClass: "title is-4" }, [
-      _vm._v("Prepared By: " + _vm._s(_vm.invoicemaker.preparer.name))
-    ]),
-    _vm._v(" "),
-    _c("table", { staticClass: "table is-fullwidth is-bordered is-striped" }, [
-      _vm._m(1),
-      _vm._v(" "),
-      _c(
-        "tbody",
-        _vm._l(_vm.added_goods, function(item) {
-          return _vm.invoicemaker.loaded
-            ? _c("tr", [
-                _c("td", [_vm._v(_vm._s(item.Code))]),
+    _c("div", { attrs: { id: "output" } }, [
+      _c("div", [
+        _c("div", { attrs: { id: "output-header" } }, [
+          _c("div", { staticClass: "level" }, [
+            _c("div", { staticClass: "level-left" }, [
+              _c("div", [
+                _c("h3", { staticClass: "title is-3" }, [_vm._v("Quote")]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(item.Brand))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(item.Name))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(_vm._f("currency")(item.PriceEx)))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(item.AddedToInvoice))]),
-                _vm._v(" "),
-                _c("td", [
-                  _vm._v(
-                    _vm._s(
-                      _vm._f("currency")(item.PriceEx * item.AddedToInvoice)
-                    )
-                  )
-                ]),
-                _vm._v(" "),
-                _c("td", [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "button is-danger",
-                      on: {
-                        click: function($event) {
-                          _vm.remove(item)
-                        }
-                      }
-                    },
-                    [_vm._v("Remove")]
-                  )
+                _c("h4", { staticClass: "subtitle is-4" }, [
+                  _vm._v(_vm._s(new Date().toDateString()))
                 ])
               ])
-            : _vm._e()
-        })
-      )
+            ]),
+            _vm._v(" "),
+            _vm._m(0)
+          ]),
+          _vm._v(" "),
+          _c("h3", { staticClass: "title is-5" }, [
+            _vm._v("Customer: " + _vm._s(_vm.invoicemaker.customer.name))
+          ]),
+          _vm._v(" "),
+          _c("h4", { staticClass: "subtitle is-6" }, [
+            _vm._v("Address: " + _vm._s(_vm.invoicemaker.customer.address))
+          ])
+        ]),
+        _vm._v(" "),
+        _c("hr"),
+        _vm._v(" "),
+        _c("div", { attrs: { id: "output-content" } }, [
+          _vm.added_goods.length > 0
+            ? _c("table", { staticClass: "table is-fullwidth is-striped" }, [
+                _vm._m(1),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.added_goods, function(item) {
+                    return _vm.invoicemaker.loaded
+                      ? _c("tr", [
+                          _c("td", [_vm._v(_vm._s(item.Code))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(item.Brand))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(item.Name))]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _vm._v(_vm._s(_vm._f("currency")(item.PriceEx)))
+                          ]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(item.AddedToInvoice))]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _vm._v(
+                              _vm._s(
+                                _vm._f("currency")(
+                                  item.PriceEx * item.AddedToInvoice
+                                )
+                              )
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "button is-danger",
+                                on: {
+                                  click: function($event) {
+                                    _vm.remove(item)
+                                  }
+                                }
+                              },
+                              [_vm._v("Remove")]
+                            )
+                          ])
+                        ])
+                      : _vm._e()
+                  })
+                ),
+                _vm._v(" "),
+                _c("p", [_vm._v("Note: All prices are in GH¢")])
+              ])
+            : _c("div", [_c("p", [_vm._v("Items added will show up here")])])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { attrs: { id: "output-footer" } }, [
+        _c("div", { staticClass: "level" }, [
+          _c("div", { staticClass: "level-left" }, [
+            _c("div", [
+              _c("h3", { staticClass: "title is-5" }, [
+                _vm._v("Prepared By: " + _vm._s(_vm.invoicemaker.preparer.name))
+              ]),
+              _vm._v(" "),
+              _vm._m(2)
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "level-right" }, [_vm._v("Totals go here")])
+        ]),
+        _vm._v(" "),
+        _c("hr"),
+        _vm._v(" "),
+        _vm._m(3)
+      ])
     ])
   ])
 }
@@ -32589,10 +32680,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "level" }, [
-      _c("div", { staticClass: "level-left" }, [_vm._v("Quote")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "level-right" }, [_vm._v("Tarzan")])
+    return _c("div", { staticClass: "level-right" }, [
+      _c("img", { attrs: { src: "/img/logo.svg" } })
     ])
   },
   function() {
@@ -32614,6 +32703,48 @@ var staticRenderFns = [
         _c("th", [_vm._v("Total")]),
         _vm._v(" "),
         _c("th")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [
+      _vm._v("\n                            Blue Gallery Home And Office "),
+      _c("br"),
+      _vm._v("\n                        +233 303 300 121 "),
+      _c("br"),
+      _vm._v(
+        "\n                            bluegallery.com.gh\n                        "
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { attrs: { id: "contact-info" } }, [
+      _c("p", [
+        _vm._v("PAYMENT CONDITIONS"),
+        _c("br"),
+        _vm._v("\n            Cheques are payable to : TARZAN ENTERPRISE LTD."),
+        _c("br"),
+        _vm._v(
+          "\n            Bank transfer : Bank : CAL BANK LTD. | Account name: Tarzan Enterprise Ltd. | Account number: 061018379022 | Branch sort\n            code: 140102 | Swift code: ACCCGHAC | Account currency: Ghana Cedi"
+        )
+      ]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v("EXEMPTED FROM 3% WITHHOLDING TAX"),
+        _c("br"),
+        _vm._v("\n            TIN: C0003222233")
+      ]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "Main showroom: TEMA, Aflao road, facing shell | Accra store: Maxmart 37 Mall, 1st floor"
+        )
       ])
     ])
   }

@@ -32,7 +32,7 @@
 <div class="field">
   <label class="label">Pick Items to add</label>
   <div class="control">
-    <input class="input" v-model="filter_keyword" type="text" placeholder="search goods">
+    <input class="input" v-model="filter_keyword" type="text" placeholder="search...">
   </div>
 </div>
 

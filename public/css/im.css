@@ -11469,3 +11469,32 @@ table {
   background-color: #e6e6e6;
 }
 
+#output {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 794px;
+  height: 1123px;
+  margin: 2em auto;
+  padding: 2em;
+  border: 1px solid silver;
+}
+
+@media print {
+  #output {
+    border: none;
+  }
+}
+
+#contact-info {
+  text-align: center;
+  font-style: italic;
+}
+
