@@ -14,7 +14,7 @@ use App\Good;
 */
 
 Route::get('/', function () {
-	return view('welcome');
+	return redirect('invoicemaker');
 });
 
 Route::get('invoicemaker', function() {
