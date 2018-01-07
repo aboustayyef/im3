@@ -1902,6 +1902,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1915,6 +1920,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         clearDiscount: function clearDiscount() {
             __WEBPACK_IMPORTED_MODULE_0__state_js__["a" /* default */].discount.amount = 0.00;
             document.getElementById("discount").focus();
+        }
+    },
+    computed: {
+        // duplicate from invoice, used to calculate effective percentage
+        added_goods: function added_goods() {
+            return this.invoicemaker.goods.filter(function (good) {
+                return good.AddedToInvoice > 0;
+            });
+        },
+        // duplicate from invoice, used to calculate effective percentage
+        totalIncludingTax: function totalIncludingTax() {
+            return this.added_goods.reduce(function (total, item) {
+                return total + item.PriceIn * item.AddedToInvoice;
+            }, 0.00);
+        },
+        effective_percent: function effective_percent() {
+            if (__WEBPACK_IMPORTED_MODULE_0__state_js__["a" /* default */].discount.type == 'GHS' && __WEBPACK_IMPORTED_MODULE_0__state_js__["a" /* default */].discount.amount > 0) {
+                return Math.round(100 * (__WEBPACK_IMPORTED_MODULE_0__state_js__["a" /* default */].discount.amount / this.totalIncludingTax), 2);
+            }
         }
     }
 });
@@ -32529,6 +32553,18 @@ var render = function() {
           )
         ])
       ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "field" }, [
+      _vm.effective_percent > 0
+        ? _c("p", { staticClass: "control" }, [
+            _vm._v(
+              "\n            ~ " +
+                _vm._s(_vm.effective_percent) +
+                " %\n        "
+            )
+          ])
+        : _vm._e()
     ])
   ])
 }

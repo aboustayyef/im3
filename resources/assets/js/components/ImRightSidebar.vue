@@ -33,6 +33,11 @@
                 </span>
             </p>
         </div>
+        <div class="field">
+            <p v-if="effective_percent > 0" class="control">
+                ~ {{effective_percent}} %
+            </p>
+        </div>
 
     </div>
 </template>
@@ -53,6 +58,25 @@
         {
             invoicemaker.discount.amount = 0.00;
             document.getElementById("discount").focus();
+        }
+    },
+    computed: {
+        // duplicate from invoice, used to calculate effective percentage
+        added_goods: function(){
+            return this.invoicemaker.goods.filter((good) => 
+                  good.AddedToInvoice > 0
+            );
+        },
+        // duplicate from invoice, used to calculate effective percentage
+        totalIncludingTax: function(){
+            return this.added_goods.reduce(function(total, item){
+                return total + (item.PriceIn * item.AddedToInvoice);
+            },0.00)
+        },
+        effective_percent: function(){
+            if (invoicemaker.discount.type == 'GHS' && invoicemaker.discount.amount > 0) {
+                return Math.round(100 * (invoicemaker.discount.amount / this.totalIncludingTax),2); 
+            }
         }
     }
 }
