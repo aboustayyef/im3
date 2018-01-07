@@ -10,6 +10,10 @@
   </div>
 </div>
 
+
+<div v-if="this.invoicemaker.loaded != 1">
+  <button class="button is-primary is-loading">Loading...</button> 
+</div>
 <table class="table is-fullwidth is-narrow is-striped">
           <tbody>
             <tr v-if="invoicemaker.loaded" v-for="item in filtered_goods">
