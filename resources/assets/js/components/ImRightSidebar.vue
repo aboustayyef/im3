@@ -1,5 +1,11 @@
 <template>
     <div class="im-sidebar">
+        <div class="level">
+            <div class="level-left"></div>
+            <div class="level-right">
+                <a class="button is-warning is-small" href="/logout">Logout</a>
+            </div>
+        </div>
         <div class="field">
             <label class="label">Invoice Prepared By</label>
             <div class="control">
@@ -38,7 +44,6 @@
                 ~ {{effective_percent}} %
             </p>
         </div>
-
     </div>
 </template>
 

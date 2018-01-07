@@ -1,6 +1,7 @@
 <?php
 
 use App\Good;
+use Illuminate\Http\Request;
 
 /*
 -------------------------------------------------------------------------
@@ -15,6 +16,11 @@ use App\Good;
 
 Route::get('/', function () {
 	return redirect('invoicemaker');
+});
+
+Route::get('/logout', function(Request $request){
+    $request->session()->invalidate();
+    return redirect('login');
 });
 
 Route::get('invoicemaker', function() {
