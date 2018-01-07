@@ -19,7 +19,7 @@ class CreateGoodsTable extends Migration
 			$table->string('Code');
 			$table->string('Name');
 			$table->string('Brand');
-			$table->string('Description');
+			$table->text('Description');
 			$table->string('Supplier');
 			$table->decimal('PriceEx');
 			$table->decimal('PriceIn');
