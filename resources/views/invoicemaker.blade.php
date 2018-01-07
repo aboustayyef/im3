@@ -8,17 +8,22 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Invoice Maker') }}</title>
+    <!-- Title -->
+    <title>Invoice Maker, By Blue Gallery Ghana</title>
 
     <!-- Styles -->
     <link href="{{ mix('css/im.css') }}" rel="stylesheet">
+
 </head>
+
 <body>
+
     <div id="app">
         <invoicemaker></invoicemaker>
     </div>
 
     <!-- Scripts -->
     <script src="{{ mix('js/im.js') }}"></script>
+
 </body>
 </html>

@@ -1,44 +1,37 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
-
-                <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('login') }}">
-                        {{ csrf_field() }}
-
-                        <input type="hidden" name="email" value="mustapha.hamoui@gmail.com">
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Login
-                                </button>
-
-                            </div>
-                        </div>
-                    </form>
+<section class="hero is-fullheight is-primary has-large-background">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns">
+          <div class="column is-4 is-offset-4" style="text-align: center;">
+          <div class="box">
+            <figure class="avatar">
+              <img src="/img/bg_square_logo.png">
+            </figure>
+            <form method="POST" action="{{ route('login') }}">
+              {{ csrf_field() }}
+              <input type="hidden" name="email" value="mustapha.hamoui@gmail.com">
+              <div class="field">
+                <div class="control">
+                    <input class="input is-large" id="password" type="password" placeholder="Password" name="password" required>
+                    @if ($errors->has('password'))
+                        <p class="help is-danger">{{ $errors->first('password') }}</p>
+                    @endif
                 </div>
-            </div>
+              </div>
+              <div class="field">
+                  <div class="control">
+                      <input type="submit" class="button is-block is-primary is-large" style="width:100%">
+                  </div>
+              </div>
+            </form>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </div>
+</section>
 @endsection
+

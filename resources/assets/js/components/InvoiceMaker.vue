@@ -2,16 +2,22 @@
     <div>
         <im-uploadmodal :modalOpen="modalOpen" v-on:toggleModal="toggleModal()"></im-uploadmodal>
         <div class="columns">
+
+            <!-- Left Sidebar. Goods Selection -->
             <div class="column full-height-column is-grey is-3 no-print">
                 <im-left-sidebar v-on:toggleModal="toggleModal()"></im-left-sidebar>
             </div>
+
+            <!-- Content. Invoice Area -->
             <div id="printable" class="column full-height-column is-7">
-                <im-invoice>
-                </im-invoice>
+                <im-invoice></im-invoice>
             </div>
+
+            <!-- Right Sidebar. Customer and Discount -->
             <div class="column full-height-column is-grey is-2 no-print">
                 <im-right-sidebar v-on:toggleModal="toggleModal()"></im-right-sidebar>
             </div>
+            
         </div>
     </div>
 </template>

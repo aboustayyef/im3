@@ -2001,6 +2001,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -44282,6 +44288,13 @@ var app = new Vue({
 
 /***/ }),
 
+/***/ "./resources/assets/sass/app.scss":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./resources/assets/sass/im.scss":
 /***/ (function(module, exports) {
 
@@ -44293,7 +44306,8 @@ var app = new Vue({
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__("./resources/assets/js/im.js");
-module.exports = __webpack_require__("./resources/assets/sass/im.scss");
+__webpack_require__("./resources/assets/sass/im.scss");
+module.exports = __webpack_require__("./resources/assets/sass/app.scss");
 
 
 /***/ })
