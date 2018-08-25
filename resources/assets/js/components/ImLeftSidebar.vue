@@ -1,27 +1,30 @@
 <template>
     <div class="im-sidebar">
         <button @click="toggleModal()" class="button is-primary">Upload New Data</button>
-        <hr>
+        <hr> 
 
-<div class="field">
-  <label class="label">Pick Items to add</label>
-  <div class="control">
-    <input class="input" v-model="filter_keyword" type="text" placeholder="search...">
-  </div>
-</div>
+        <!-- Search Field -->
+		<div class="field">
+		  <label class="label">Pick Items to add</label>
+		  <div class="control">
+		    <input class="input" v-model="filter_keyword" type="text" placeholder="search...">
+		  </div>
+		</div>
+		
+		<!-- Loading Indicator -->
+		<div v-if="this.invoicemaker.loaded != 1">
+		  <button class="button is-primary is-loading">Loading...</button> 
+		</div>
 
-
-<div v-if="this.invoicemaker.loaded != 1">
-  <button class="button is-primary is-loading">Loading...</button> 
-</div>
-<table class="table is-fullwidth is-narrow is-striped">
-          <tbody>
-            <tr v-if="invoicemaker.loaded" v-for="item in filtered_goods">
-              <td>{{item.Name}} - {{item.Description}}</td>
-              <td>{{item.Stock}}</td>
-              <td><button @click="increment(item)" class="button is-primary is-small">Add</button></td>
-            </tr>
-          </tbody>
+		<!-- Filtered Product Table -->
+		<table class="table is-fullwidth is-narrow is-striped">
+        	<tbody>
+            	<tr v-if="invoicemaker.loaded" v-for="item in filtered_goods">
+              		<td>{{item.Name}} - {{item.Description}}</td>
+              		<td>{{item.Stock}}</td>
+              		<td><button @click="increment(item)" class="button is-primary is-small">Add</button></td>
+            	</tr>
+          	</tbody>
         </table>
     </div>
 </template>
@@ -40,7 +43,6 @@
             this.$emit('toggleModal');
           },
           increment: function(item){
-            console.log(item.AddedToInvoice);
             if (item.AddedToInvoice < item.Stock) {
               item.AddedToInvoice++
             }
