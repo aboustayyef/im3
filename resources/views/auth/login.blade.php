@@ -1,37 +1,56 @@
-@extends('layouts.app')
+<x-guest-layout>
+    <x-auth-card>
+        <x-slot name="logo">
+            <a href="/">
+                <x-application-logo class="h-16 fill-current fill-gray-500 text-gray-500" />
+            </a>
+        </x-slot>
 
-@section('content')
-<section class="hero is-fullheight is-primary has-large-background">
-  <div class="hero-body">
-    <div class="container">
-      <div class="columns">
-          <div class="column is-4 is-offset-4" style="text-align: center;">
-          <div class="box">
-            <figure class="avatar">
-              <img src="/img/bg_square_logo.png">
-            </figure>
-            <form method="POST" action="{{ route('login') }}">
-              {{ csrf_field() }}
-              <input type="hidden" name="email" value="mustapha.hamoui@gmail.com">
-              <div class="field">
-                <div class="control">
-                    <input class="input is-large" id="password" type="password" placeholder="Password" name="password" required>
-                    @if ($errors->has('password'))
-                        <p class="help is-danger">{{ $errors->first('password') }}</p>
-                    @endif
-                </div>
-              </div>
-              <div class="field">
-                  <div class="control">
-                      <input type="submit" class="button is-block is-primary is-large" style="width:100%">
-                  </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-@endsection
+        <!-- Session Status -->
+        <x-auth-session-status class="mb-4" :status="session('status')" />
 
+        <!-- Validation Errors -->
+        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+
+        <form method="POST" action="{{ route('login') }}">
+            @csrf
+
+            <!-- Email Address -->
+            <div>
+                <x-label for="email" :value="__('Email')" />
+
+                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+            </div>
+
+            <!-- Password -->
+            <div class="mt-4">
+                <x-label for="password" :value="__('Password')" />
+
+                <x-input id="password" class="block mt-1 w-full"
+                                type="password"
+                                name="password"
+                                required autocomplete="current-password" />
+            </div>
+
+            <!-- Remember Me -->
+            <div class="block mt-4">
+                <label for="remember_me" class="inline-flex items-center">
+                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
+                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                </label>
+            </div>
+
+            <div class="flex items-center justify-end mt-4">
+                @if (Route::has('password.request'))
+                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                        {{ __('Forgot your password?') }}
+                    </a>
+                @endif
+
+                <x-button class="ml-3">
+                    {{ __('Login') }}
+                </x-button>
+            </div>
+        </form>
+    </x-auth-card>
+</x-guest-layout>

@@ -1,10 +1,10 @@
 <?php
 
-use App\Good;
-use Illuminate\Http\Request;
+use App\Models\Good;
+use Illuminate\Support\Facades\Route;
 
 /*
--------------------------------------------------------------------------
+|--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
 |
@@ -15,35 +15,22 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', function () {
-	return redirect('invoicemaker');
+    return redirect('/invoicemaker');
 });
 
-Route::get('/logout', function(Request $request){
-    $request->session()->invalidate();
-    return redirect('login');
-});
-
-Route::get('invoicemaker', function() {
+Route::get('invoicemaker', function () {
     return view('invoicemaker');
 })->middleware('auth');
 
-Route::group(['prefix' => 'api', 'middleware'=>'auth'], function () {
-	route::get('/goods', function(){
+Route::group(['prefix' => 'api', 'middleware' => 'auth'], function () {
+    route::get('/goods', function () {
         return Good::all();
-	});
+    });
 });
 
 Route::post('/uploadCsv', [
-    'as'    =>  'uploadHandler',
-    'uses'  =>  'UploadController@index'
+    'as' => 'uploadHandler',
+    'uses' => 'UploadController@index',
 ]);
 
-/*
--------------------------------------------------------------------------
-| Auth and Admin Routes
-|--------------------------------------------------------------------------
-*/
-
-$this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
-$this->post('login', 'Auth\LoginController@login');
-$this->post('logout', 'Auth\LoginController@logout')->name('logout');
+require __DIR__.'/auth.php';

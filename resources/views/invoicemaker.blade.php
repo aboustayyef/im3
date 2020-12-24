@@ -13,17 +13,17 @@
 
     <!-- Styles -->
     <link href="{{ mix('css/im.css') }}" rel="stylesheet">
-
+    
 </head>
 
 <body>
-
+    
     <div id="app">
         <invoicemaker></invoicemaker>
     </div>
+    <script src="{{ mix('js/im.js') }}"></script>
 
     <!-- Scripts -->
-    <script src="{{ mix('js/im.js') }}"></script>
 
 </body>
 </html>

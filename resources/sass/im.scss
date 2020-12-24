@@ -1,0 +1,75 @@
+// Bootstrap
+$body-size: 14px;
+@import "~bulma/bulma";
+.avatar {
+    margin-top: -70px;
+    padding-bottom: 20px;
+}
+
+.box {
+    margin-top: 5rem;
+}
+
+.avatar img {
+    width: 30%;
+    padding: 5px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 2px 3px rgba(10, 10, 10, .1), 0 0 0 1px rgba(10, 10, 10, .1);
+}
+
+.has-large-background {
+    background-image: url(/img/bkg.jpg?v=1);
+    background-size: cover;
+}
+
+.im-sidebar {
+    padding: 1.5rem;
+}
+
+.full-height-column {
+    height: 100vh;
+    max-height: 100vh;
+    overflow: scroll;
+}
+
+table {
+    font-size: 11px;
+}
+
+.is-grey {
+    background-color: lighten(silver, 15);
+}
+
+#output {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 794px;
+    height: 1123px;
+    padding: 2.5em;
+    margin: 1em auto;
+    border: 1px solid silver;
+    @media print {
+        border: none;
+    }
+}
+
+#contact-info {
+    font-family: helvetica;
+    text-align: center;
+    font-style: italic;
+}
+
+@media print {
+    .no-print {
+        display: none;
+    }
+    #printable,
+    #output {
+        width: 100%;
+    }
+    .section {
+        padding: 0;
+    }
+}
